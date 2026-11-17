@@ -25,7 +25,7 @@
   <parent>
     <groupId>com.xwiki.ldapuserimport</groupId>
     <artifactId>application-ldapuserimport</artifactId>
-    <version>1.7.10-SNAPSHOT</version>
+    <version>1.8.0-SNAPSHOT</version>
   </parent>
   <artifactId>application-ldapuserimport-api</artifactId>
   <packaging>jar</packaging>
@@ -71,6 +71,13 @@
       <groupId>org.xwiki.contrib.ldap</groupId>
       <artifactId>ldap-authenticator</artifactId>
       <version>${ldap.version}</version>
+      <exclusions>
+        <!-- Only needed for XWiki versions older than 13.3RC1, and it brings an old xwiki-platform-model. -->
+        <exclusion>
+          <groupId>org.xwiki.contrib</groupId>
+          <artifactId>userauthenticatedevent-backport</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <!--  Testing dependencies.  -->
     <dependency>
