@@ -35,6 +35,8 @@
   <description>Application to import users from LDAP</description>
   <properties>
     <ldap.version>9.16.7</ldap.version>
+    <!-- In-memory LDAP server used by the tests. -->
+    <unboundid.version>7.0.1</unboundid.version>
   </properties>
   <issueManagement>
     <system>GitHub</system>
@@ -51,4 +53,12 @@
     <module>application-ldapuserimport-ui</module>
     <module>application-ldapuserimport-xip</module>
   </modules>
+  <profiles>
+    <profile>
+      <id>integration-tests</id>
+      <modules>
+        <module>application-ldapuserimport-test</module>
+      </modules>
+    </profile>
+  </profiles>
 </project>

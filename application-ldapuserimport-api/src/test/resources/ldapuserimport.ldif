@@ -1,0 +1,85 @@
+dn: dc=example,dc=org
+objectClass: top
+objectClass: domain
+dc: example
+
+dn: ou=people,dc=example,dc=org
+objectClass: top
+objectClass: organizationalUnit
+ou: people
+
+dn: ou=groups,dc=example,dc=org
+objectClass: top
+objectClass: organizationalUnit
+ou: groups
+
+# "al" is the start of two UIDs, so that a search returns more than one user.
+dn: uid=alice,ou=people,dc=example,dc=org
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+uid: alice
+cn: Alice Anderson
+givenName: Alice
+sn: Anderson
+mail: alice@example.org
+
+dn: uid=albert,ou=people,dc=example,dc=org
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+uid: albert
+cn: Albert Adams
+givenName: Albert
+sn: Adams
+mail: albert@example.org
+
+dn: uid=bob,ou=people,dc=example,dc=org
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+uid: bob
+cn: Bob Brown
+givenName: Bob
+sn: Brown
+mail: bob@example.org
+
+dn: uid=dave,ou=people,dc=example,dc=org
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+uid: dave
+cn: Dave Davis
+givenName: Dave
+sn: Davis
+mail: dave@example.org
+
+dn: uid=eve,ou=people,dc=example,dc=org
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+uid: eve
+cn: Eve Evans
+givenName: Eve
+sn: Evans
+mail: eve@example.org
+
+dn: cn=developers,ou=groups,dc=example,dc=org
+objectClass: top
+objectClass: groupOfNames
+cn: developers
+description: Developers
+member: uid=dave,ou=people,dc=example,dc=org
+member: uid=eve,ou=people,dc=example,dc=org
+
+dn: cn=testers,ou=groups,dc=example,dc=org
+objectClass: top
+objectClass: groupOfNames
+cn: testers
+description: Testers
+member: uid=bob,ou=people,dc=example,dc=org

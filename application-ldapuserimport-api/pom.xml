@@ -34,7 +34,7 @@
   <properties>
     <xwiki.extension.category>api</xwiki.extension.category>
     <checkstyle.suppressions.location>${basedir}/src/checkstyle/checkstyle-suppressions.xml</checkstyle.suppressions.location>
-    <xwiki.jacoco.instructionRatio>0.31</xwiki.jacoco.instructionRatio>
+    <xwiki.jacoco.instructionRatio>0.83</xwiki.jacoco.instructionRatio>
   </properties>
   <dependencies>
     <dependency>
@@ -84,6 +84,19 @@
       <groupId>org.xwiki.commons</groupId>
       <artifactId>xwiki-commons-tool-test-component</artifactId>
       <version>${commons.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.xwiki.platform</groupId>
+      <artifactId>xwiki-platform-test-oldcore</artifactId>
+      <version>${platform.version}</version>
+      <type>pom</type>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.unboundid</groupId>
+      <artifactId>unboundid-ldapsdk</artifactId>
+      <version>${unboundid.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
