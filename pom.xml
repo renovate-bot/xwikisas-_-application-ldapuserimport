@@ -36,7 +36,7 @@
   <properties>
     <ldap.version>9.16.7</ldap.version>
     <!-- In-memory LDAP server used by the tests. -->
-    <unboundid.version>7.0.1</unboundid.version>
+    <unboundid.version>7.0.6</unboundid.version>
   </properties>
   <issueManagement>
     <system>GitHub</system>
