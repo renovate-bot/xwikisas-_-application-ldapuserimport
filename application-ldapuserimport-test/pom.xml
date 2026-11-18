@@ -25,7 +25,7 @@
   <parent>
     <groupId>com.xwiki.ldapuserimport</groupId>
     <artifactId>application-ldapuserimport</artifactId>
-    <version>1.8.0-SNAPSHOT</version>
+    <version>1.8.0</version>
   </parent>
   <artifactId>application-ldapuserimport-test</artifactId>
   <name>LDAP User Import Application - Tests - Parent POM</name>
