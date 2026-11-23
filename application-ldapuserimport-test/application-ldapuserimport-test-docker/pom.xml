@@ -25,7 +25,7 @@
   <parent>
     <groupId>com.xwiki.ldapuserimport</groupId>
     <artifactId>application-ldapuserimport-test</artifactId>
-    <version>1.8.1</version>
+    <version>1.8.2-SNAPSHOT</version>
   </parent>
   <artifactId>application-ldapuserimport-test-docker</artifactId>
   <name>LDAP User Import Application - Tests - Functional Docker Tests</name>
