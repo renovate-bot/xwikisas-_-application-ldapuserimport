@@ -160,7 +160,8 @@ public class DefaultLDAPGroupImportJob extends AbstractJob<LDAPGroupImportReques
     {
         XWikiContext context = xWikiContextProvider.get();
         XWiki xwiki = context.getWiki();
-        XWikiDocument groupDocument = xwiki.getDocument(groupReference, context);
+        // Clone the document to avoid modifying the cached instance.
+        XWikiDocument groupDocument = xwiki.getDocument(groupReference, context).clone();
 
         // Make sure that the document is new, even this should have been handled beforehand
         // TODO: Define an exception specific to the LDAP User import module and use it here. Currently, it's not a

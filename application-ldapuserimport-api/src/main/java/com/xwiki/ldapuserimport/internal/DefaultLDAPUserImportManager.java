@@ -635,7 +635,8 @@ public class DefaultLDAPUserImportManager implements LDAPUserImportManager
                     List<XWikiLDAPSearchAttribute> attributes =
                         ldapUtils.searchUserAttributesByUid(userId,
                             getUserAttributes(configuration, DEFAULT_LDAP_FIELDS_MAPPING));
-                    XWikiDocument userDoc = context.getWiki().getDocument(userReference, context);
+                    // Clone the document to avoid modifying the cached instance, since syncUser updates it in place.
+                    XWikiDocument userDoc = context.getWiki().getDocument(userReference, context).clone();
                     ldapUtils.syncUser(userDoc, attributes, ldapUtils.searchUserDNByUid(userId), userId, context);
                     // Make sure to get the latest version of the document, after LDAP synchronization.
                     userDoc = context.getWiki().getDocument(userReference, context);
