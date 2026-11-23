@@ -377,13 +377,15 @@ public class DefaultLDAPUserImportManager implements LDAPUserImportManager
      * is (OIDC) subject = (LDAP) uid. Example: if the LDAP uid is sAMAccountName, then the value from this field will
      * be stored in the OIDC subject. TODO: Provide flexibility to accept other field/formatter for the mapping.
      *
-     * @param userDoc the new created user profile document
+     * @param cachedUserDoc the new created user profile document, as returned by {@code XWiki#getDocument}
      * @param subject the user UID to be stored in the OIDC subject property
      * @param context the main wiki context, to make sure the users are updated on the main wiki
      * @throws XWikiException
      */
-    private void addOIDCObject(XWikiDocument userDoc, String subject, XWikiContext context) throws Exception
+    private void addOIDCObject(XWikiDocument cachedUserDoc, String subject, XWikiContext context) throws Exception
     {
+        // Clone the document to avoid modifying the cached instance.
+        XWikiDocument userDoc = cachedUserDoc.clone();
         boolean addOIDCObj = ldapUserImportConfiguration.getAddOIDCObject();
         boolean oIDCClassExists = context.getWiki().exists(OIDC_CLASS, context);
         if (addOIDCObj && oIDCClassExists) {
@@ -417,7 +419,8 @@ public class DefaultLDAPUserImportManager implements LDAPUserImportManager
         if (StringUtils.isNoneBlank(groupName)) {
             XWikiContext context = contextProvider.get();
             DocumentReference groupReference = documentReferenceResolver.resolve(groupName);
-            XWikiDocument groupDocument = context.getWiki().getDocument(groupReference, context);
+            // Clone the document to avoid modifying the cached instance.
+            XWikiDocument groupDocument = context.getWiki().getDocument(groupReference, context).clone();
             boolean shouldSave = false;
             for (Entry<String, Map<String, String>> user : users.entrySet()) {
                 String userFullName = user.getValue().get(USER_PROFILE_KEY);
@@ -656,8 +659,8 @@ public class DefaultLDAPUserImportManager implements LDAPUserImportManager
     {
         BaseClass groupClass = context.getWiki().getGroupClass(context);
 
-        // Get document representing group
-        XWikiDocument groupDoc = context.getWiki().getDocument(groupName, context);
+        // Get document representing group. Clone it to avoid modifying the cached instance.
+        XWikiDocument groupDoc = context.getWiki().getDocument(groupName, context).clone();
         return groupDoc;
     }
 
@@ -1000,7 +1003,8 @@ public class DefaultLDAPUserImportManager implements LDAPUserImportManager
 
             try {
 
-                XWikiDocument configSourceDoc = context.getWiki().getDocument(configSourceDocRef, context);
+                // Clone the document to avoid modifying the cached instance.
+                XWikiDocument configSourceDoc = context.getWiki().getDocument(configSourceDocRef, context).clone();
 
                 Set<String> ldapGroupsSetToAdd = new HashSet<String>(Arrays.asList(ldapGroupsArray));
                 Map<String, Set<String>> groupMapping = xwikiLDAPConfigProvider.get().getGroupMappings();
